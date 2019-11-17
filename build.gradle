@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+}
+
+group 'nl.inergy.test.pdi.tests'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'com.amazonaws:aws-java-sdk-ssm:1.11.675'
+    testCompile 'com.ninja-squad:DbSetup:2.1.0'
+    testCompile 'org.dbunit:dbunit:2.6.0'
+    testCompile 'net.sourceforge.csvjdbc:csvjdbc:1.0.35'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform {
+        includeTags 'fast'
+        excludeTags 'slow'
+    }
+
+    testLogging {
+        // Make sure output from standard out or error is shown
+        showStandardStreams = true
+    }
+}
