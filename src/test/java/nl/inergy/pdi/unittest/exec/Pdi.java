@@ -3,7 +3,7 @@ package nl.inergy.pdi.unittest.exec;
 import java.io.IOException;
 
 public class Pdi {
-    // we expect to start in /data-integration
+    // we expect to start in /data-integration; with this relative path it works in- and outside of a Docker container
     public static final String ENTRYPOINT_CMD = "../entrypoint.sh";
     public static String cmdFormat = ENTRYPOINT_CMD + " %s %s";
 

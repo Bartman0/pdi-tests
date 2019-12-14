@@ -2,6 +2,7 @@ package nl.inergy.pdi.unittest.db.operations;
 
 import com.ninja_squad.dbsetup.generator.ValueGenerators;
 import com.ninja_squad.dbsetup.operation.Operation;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import static com.ninja_squad.dbsetup.Operations.insertInto;
@@ -22,7 +23,7 @@ public class Product {
                     "TA_INSERT_DATETIME",
                     "TA_UPDATE_DATETIME",
                     "TA_HASH",
-                    "TA_RUNID")
-            .repeatingValues("TEST", LocalTime.now(), LocalTime.now(), "TST", 0, 0, LocalTime.now(), LocalTime.now(), 1, 1).times(10)
+                    "TA_RUNID_PCR")
+            .repeatingValues("TEST", LocalDateTime.now(), LocalDateTime.now(), "TST", 0, 0, LocalDateTime.now(), LocalDateTime.now(), 1, 1).times(10)
             .build();
 }
