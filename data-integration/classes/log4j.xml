@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+   <appender name="FILE" class="org.apache.log4j.rolling.RollingFileAppender">
+      <param name="File" value="log/pdi.log" />
+      <param name="Append" value="true" />
+      <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+         <param name="FileNamePattern" value="log/pdi.%d{yyyy-MMd}.log.gz" />
+      </rollingPolicy>
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%p] %m%n" />
+      </layout>
+   </appender>
+
+   <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+      <param name="Target" value="System.out" />
+      <param name="Threshold" value="INFO" />
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%p] %m%n" />
+      </layout>
+   </appender>
+
+   <root>
+      <appender-ref ref="CONSOLE" />
+      <appender-ref ref="FILE" />
+   </root>
+
+</log4j:configuration>

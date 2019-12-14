@@ -3,7 +3,8 @@ package nl.inergy.pdi.unittest.exec;
 import java.io.IOException;
 
 public class Pdi {
-    public static final String ENTRYPOINT_CMD = "/entrypoint.sh";
+    // we expect to start in /data-integration
+    public static final String ENTRYPOINT_CMD = "../entrypoint.sh";
     public static String cmdFormat = ENTRYPOINT_CMD + " %s %s";
 
     public static void runJob(String jobName) throws IOException {

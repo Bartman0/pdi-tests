@@ -19,11 +19,7 @@ public class Database {
     }
 
     public CachedTable read(String tableName) throws SQLException, DatabaseUnitException {
-        Connection connection = DriverManager.getConnection(credentials.getDbUrl(), credentials.getDbUser(), credentials.getDbPassword());
-        CachedResultSetTable cachedResultSetTable = new CachedResultSetTable(
-                new ForwardOnlyResultSetTable(tableName, String.format("select * from {0}", tableName), new DatabaseConnection(connection)));
-        connection.close();
-        return cachedResultSetTable;
+        return read(tableName, String.format("select * from {0}", tableName));
     }
 
     public CachedTable read(String tableName, String query) throws SQLException, DatabaseUnitException {

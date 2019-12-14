@@ -9,19 +9,19 @@ sourceCompatibility = 11
 
 repositories {
     mavenCentral()
+    maven {
+        url "http://nexus.hosting.inergy.nl:8081/content/groups/public/"
+    }
 }
 
 dependencies {
-    testCompile 'com.amazonaws:aws-java-sdk-ssm:1.11.675'
-    testCompile 'com.ninja-squad:DbSetup:2.1.0'
-    testCompile 'org.dbunit:dbunit:2.6.0'
-    testCompile 'net.sourceforge.csvjdbc:csvjdbc:1.0.35'
+    testImplementation 'com.amazonaws:aws-java-sdk-ssm:1.11.675'
+    testImplementation 'com.ninja-squad:DbSetup:2.1.0'
+    testImplementation 'org.dbunit:dbunit:2.6.0'
+    testImplementation 'net.sourceforge.csvjdbc:csvjdbc:1.0.35'
+    testImplementation 'org.netezza:nzjdbc:7.2.0.5.P2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
-}
-
-repositories {
-    mavenCentral()
 }
 
 test {
