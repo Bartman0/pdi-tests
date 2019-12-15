@@ -5,13 +5,19 @@ import com.ninja_squad.dbsetup.DbSetupTracker;
 import com.ninja_squad.dbsetup.destination.DriverManagerDestination;
 import com.ninja_squad.dbsetup.operation.Operation;
 import nl.inergy.pdi.unittest.db.Credentials;
+import org.dbunit.dataset.Column;
+import org.dbunit.dataset.DataSetException;
+import org.dbunit.dataset.DefaultTable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
-public class TestBase {
+public class PdiTestBase {
     // the tracker is static because JUnit uses a separate Test instance for every test method.
     protected static DbSetupTracker dbSetupTrackerDSA = new DbSetupTracker();
     protected static DbSetupTracker dbSetupTrackerDWA = new DbSetupTracker();
     //private static Credentials credentialsDSA = new Credentials().initContinuousIntegrationAWS("led");
-    //private static Credentials credentialsDSA = new Credentials().initContinuousIntegrationAWS("led");
+    //private static Credentials credentialsDWA = new Credentials().initContinuousIntegrationAWS("led");
     protected static Credentials credentialsDSA = new Credentials();
     protected static Credentials credentialsDWA = new Credentials();
 
@@ -20,5 +26,18 @@ public class TestBase {
         String dbUser = credentials.getDbUser();
         String dbPassword = credentials.getDbPassword();
         return new DbSetup(new DriverManagerDestination(dbUrl, dbUser, dbPassword), initialization);
+    }
+
+    public static ArrayList<String> getColumnTypes(DefaultTable actual) throws DataSetException {
+        Column[] columns = actual.getTableMetaData().getColumns();
+        ArrayList<String> columnTypes = Arrays.stream(columns)
+                .map(c -> c.getDataType().getTypeClass().getSimpleName())
+//                .map(c -> { if (c.toUpperCase().startsWith("BIGINT")) return "Integer"; else return c; })     // hack: convert BigInteger to Integer
+                .collect(Collectors.toCollection(ArrayList::new));
+        return columnTypes;
+    }
+
+    public static String getColumnTypesAsString(DefaultTable actual) throws DataSetException {
+        return String.join(", ", getColumnTypes(actual));
     }
 }

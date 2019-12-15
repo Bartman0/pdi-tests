@@ -48,9 +48,9 @@ public class Credentials {
 
     public Credentials initContinuousIntegrationAWS(String database) {
         String environment = Ssm.getParameter("/pnl/led/dwh/CI/environment");
-        dbUrl = Ssm.getParameter(String.format("/pnl{0}/led/dwh/CI/database/{1}/url", environment, database));
-        dbUser = Ssm.getParameter(String.format("/pnl{0}/led/dwh/CI/database/{1}/user", environment, database));
-        dbPassword = Ssm.getParameter(String.format("/pnl{0}/led/dwh/CI/database/{1}/password", environment, database));
+        dbUrl = Ssm.getParameter(String.format("/pnl%s/led/dwh/CI/database/%s/url", environment, database));
+        dbUser = Ssm.getParameter(String.format("/pnl%s/led/dwh/CI/database/%s/user", environment, database));
+        dbPassword = Ssm.getParameter(String.format("/pnl%s/led/dwh/CI/database/%s/password", environment, database));
         return this;
     }
 }

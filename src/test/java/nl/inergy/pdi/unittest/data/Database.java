@@ -19,7 +19,7 @@ public class Database {
     }
 
     public CachedTable read(String tableName) throws SQLException, DatabaseUnitException {
-        return read(tableName, String.format("select * from {0}", tableName));
+        return read(tableName, String.format("select * from %s", tableName));
     }
 
     public CachedTable read(String tableName, String query) throws SQLException, DatabaseUnitException {

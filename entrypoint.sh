@@ -2,12 +2,12 @@
 
 run_pan() {
 	echo ./pan.sh -file $@
-	pan.sh -file /jobs/$@
+	./pan.sh -file ../jobs/$@
 }
 
 run_kitchen() {
 	echo ./kitchen.sh -file $@
-	kitchen.sh -file /jobs/$@
+	./kitchen.sh -file ../jobs/$@
 }
 
 print_usage() {
