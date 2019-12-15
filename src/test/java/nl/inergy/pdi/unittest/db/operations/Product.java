@@ -10,7 +10,6 @@ import static com.ninja_squad.dbsetup.Operations.truncate;
 
 public class Product {
     public static final Operation TRUNCATE_DSA = truncate("MAILINFO_ST..RTCRA_PRODUCT");
-    public static final Operation TRUNCATE_DWA = truncate("MAILINFO_WT..WTDA_PRODUCT");
     public static final Operation INSERT_DSA = insertInto("MAILINFO_ST..RTCRA_PRODUCT")
             .withGeneratedValue("PRODUCTCODE", ValueGenerators.sequence().startingAt(1L))
             .withGeneratedValue("OMSCHRIJVING", ValueGenerators.stringSequence("Omschrijving-").startingAt(1L))
@@ -26,4 +25,5 @@ public class Product {
                     "TA_RUNID_PCR")
             .repeatingValues("TEST", LocalDateTime.now(), LocalDateTime.now(), "TST", 0, 0, LocalDateTime.now(), LocalDateTime.now(), 1, 1).times(10)
             .build();
+    public static final Operation TRUNCATE_DWA = truncate("MAILINFO_WT..WTDA_PRODUCT");
 }
