@@ -30,11 +30,9 @@ public class PdiTestBase {
 
     public static ArrayList<String> getColumnTypes(DefaultTable actual) throws DataSetException {
         Column[] columns = actual.getTableMetaData().getColumns();
-        ArrayList<String> columnTypes = Arrays.stream(columns)
+        return Arrays.stream(columns)
                 .map(c -> c.getDataType().getTypeClass().getSimpleName())
-//                .map(c -> { if (c.toUpperCase().startsWith("BIGINT")) return "Integer"; else return c; })     // hack: convert BigInteger to Integer
                 .collect(Collectors.toCollection(ArrayList::new));
-        return columnTypes;
     }
 
     public static String getColumnTypesAsString(DefaultTable actual) throws DataSetException {
